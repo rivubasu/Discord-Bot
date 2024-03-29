@@ -16,7 +16,8 @@ const client = new Client({
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const DOMAIN = "http://localhost:5000/";
+//const DOMAIN = "http://localhost:5000/";
+const DOMAIN = "https://trimz-2hvz.onrender.com/";
 
 dotenv.config();
 
