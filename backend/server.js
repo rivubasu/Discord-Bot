@@ -69,7 +69,7 @@ client.on("messageCreate", async (message) => {
     if (!urlData) {
       return message.reply(`No data found for ${shortId}`);
     }
-    const totalClicks = urlData.visitHistory.length / 2;
+    const totalClicks = urlData.visitHistory.length - 1;
 
     return message.reply({
       content: `Total number of clicks are ${totalClicks}`,
