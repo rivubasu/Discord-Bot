@@ -16,6 +16,7 @@ const client = new Client({
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const DOMAIN = "http://localhost:5000/";
 
 dotenv.config();
 
@@ -41,7 +42,7 @@ client.on("messageCreate", async (message) => {
       //console.log("ShortURL", shortId);
 
       return message.reply({
-        content: `Shortened URL: http://localhost:5000/${shortId}`,
+        content: `Shortened URL: ${DOMAIN}${shortId}`,
       });
     } catch (error) {
       console.error("Error generating short URL:", error.message);
@@ -52,15 +53,11 @@ client.on("messageCreate", async (message) => {
   //if message starts with analyse handle it
   if (message.content.startsWith("analyse")) {
     let shortId;
-    if (message.content.startsWith("analyse http://localhost:5000/")) {
-      shortId = message.content
-        .split("analyse http://localhost:5000/")[1]
-        .trim();
+    if (message.content.startsWith(`analyse ${DOMAIN}`)) {
+      shortId = message.content.split(`analyse ${DOMAIN}`)[1].trim();
       //console.log(shortId);
-    } else if (message.content.startsWith("analysehttp://localhost:5000/")) {
-      shortId = message.content
-        .split("analysehttp://localhost:5000/")[1]
-        .trim();
+    } else if (message.content.startsWith(`analyse${DOMAIN}`)) {
+      shortId = message.content.split(`analyse${DOMAIN}`)[1].trim();
       //console.log(shortId);
     } else {
       shortId = message.content.split("analyse")[1].trim();
